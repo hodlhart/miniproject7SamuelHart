@@ -115,7 +115,7 @@ the edit, is in [`acceptance/transcript.md`](acceptance/transcript.md).
 ```
 server.py                  the MCP server
 requirements.txt           pinned dependencies, real pip freeze
-CLAUDE.md                  the rubric map and the rules this project follows
+CLAUDE.md                  the requirement checklist and project rules
 acceptance/transcript.md   read, create and modify, through the server
 ```
 
@@ -128,21 +128,18 @@ worked example so the shape of a tool was settled before I wrote the rest. It
 also drafted `CLAUDE.md` and the first pass of `requirements.txt`.
 
 **What I chose, specified and verified.** The five tools are the assignment's,
-but the decisions inside them are mine. I chose to put a `confirm` flag on
-`update_post` and `delete_post` rather than trusting the model to be careful,
-because the rubric says "delete one of your own posts" and a delete cannot be
-undone. I wrote every docstring, and I wrote them in the same voice so the model
-can tell `get_post` from `list_posts` when I ask to see something. I decided
-that a 403 should say the post belongs to someone else rather than surfacing the
-status code alone, because the model reads that sentence and uses it to choose
-what to try next.
+but the decisions inside them are mine. I put a `confirm` flag on `update_post`
+and `delete_post` rather than leaving it to the model to be careful, because a
+delete cannot be undone and the tool is the only thing standing between a
+sentence and a missing post. I wrote every docstring, in the same voice across
+all five, so the model can tell `get_post` from `list_posts` when I ask to see
+something.
 
-Before writing the formatters I called the API by hand to see the real shape
-rather than the shape I expected. Two things came out of that: `GET
-/api/v1/posts` returns a bare JSON array, not an object with an `items` key, and
-a post carries `author_name` as a flat field rather than a nested author object.
-My first version of `list_posts` looked for a nested `author` and printed `by ?`
-for every row, which looked like an authentication problem and was not.
+The formatters are built on the API's real shape, not the shape I assumed.
+`GET /api/v1/posts` returns a bare JSON array, not an object with an `items`
+key, and a post carries `author_name` as a flat field rather than a nested
+author object. A nested lookup prints `by ?` for every row and looks exactly
+like an authentication problem, which is a bad hour spent on the wrong suspect.
 
 **Changes I made to AI-generated code.** I wrote the other four tools and the
 two helpers they share, `_unwrap_post` and `_format_post`. In the generated

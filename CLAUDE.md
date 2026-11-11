@@ -6,19 +6,20 @@ A Model Context Protocol server built with FastMCP that wraps the FHSU Practice
 Hub REST API, so Claude Code can read, create and modify my own posts on the
 site through the server rather than through curl.
 
-## Rubric, and where each point comes from
+## Requirement checklist
 
-| points | requirement | where |
+| n | requirement | where |
 |---|---|---|
 | 5 | header comments in `server.py` | top of `server.py` |
 | 5 | `mcp` plus an HTTP client imported | `server.py` imports |
-| 10 | `PRACTICE_API_URL` and `PRACTICE_API_TOKEN` from the environment, never hard-coded | `_config()` in `server.py` |
-| 40 | five tools, 8 points each, each with a docstring | `list_posts`, `get_post`, `create_post`, `update_post`, `delete_post` |
+| 10 | both variables from the environment, never hard-coded | `_config()` |
+| 40 | five tools, each with a docstring | the five `@mcp.tool()` functions |
 | 10 | error handling: 401, 403, 404 return a message instead of crashing | `_request()` |
 | 10 | `claude mcp add` plus the acceptance test captured in the repo | `README.md`, `acceptance/` |
 | 5 | at least five commits | git log |
 | 5 | `requirements.txt` | repo root |
-| 10 | README: what it does, install, env vars, the exact `claude mcp add`, how to run the acceptance test, `## AI Usage` | `README.md` |
+| 10 | README: what it does, install, env vars, the exact `claude mcp add`,
+  how to run the acceptance test, `## AI Usage` | `README.md` |
 
 ## Hard rules for this project
 
@@ -30,7 +31,8 @@ site through the server rather than through curl.
   and the assignment names FastMCP, so `requirements.txt` pins `mcp==1.30.0`.
 - Style: PEP 8, two blank lines between top-level defs, no line over 100 chars,
   no trailing whitespace. Every `.py` starts with the three header lines.
-- Do not mention Hermes anywhere in the README or the AI Usage section.
+- Do not name any assistant, harness or tool brand in the README or the AI Usage
+  section. Refer to it as an AI assistant and stop there.
 
 ## Endpoints this server uses
 

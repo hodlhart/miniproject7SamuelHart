@@ -1,7 +1,8 @@
 # Acceptance test transcript
 
-Required by the rubric: through my server, Claude Code reads my posts, creates a
-new post, and modifies an existing one. These are the three runs, in order.
+What the acceptance test has to show: through my server, Claude Code reads my
+posts, creates a new post, and modifies an existing one. These are the three
+runs, in order.
 
 **Redaction:** my home directory is written as `~/miniproject7SamuelHart`. Nothing
 else in the captured output was changed.
