@@ -31,7 +31,10 @@ cannot take the server down in the middle of a conversation.
 
 ## Install
 
-Python 3.10 or newer. This project uses 3.13.
+Python 3.10 or newer. This project was built on 3.13 and the pinned
+requirements also install on 3.14 unchanged.
+
+With uv:
 
 ```
 git clone git@github.com:hodlhart/miniproject7SamuelHart.git
@@ -39,6 +42,19 @@ cd miniproject7SamuelHart
 uv venv --python 3.13
 uv pip install -r requirements.txt
 ```
+
+With nothing but the standard library, which uses whichever `python3` is on
+your PATH and works the same way:
+
+```
+git clone git@github.com:hodlhart/miniproject7SamuelHart.git
+cd miniproject7SamuelHart
+python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt
+```
+
+On Windows the interpreter is `.venv\Scripts\python.exe` rather than
+`.venv/bin/python`, and that is the path to give `claude mcp add` below.
 
 `requirements.txt` is a real `pip freeze` from the working environment. It pins
 `mcp==1.30.0` on purpose: the assignment names FastMCP, and mcp 2.x renamed
