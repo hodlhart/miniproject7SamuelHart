@@ -3,14 +3,16 @@
 Required by the rubric: through my server, Claude Code reads my posts, creates a
 new post, and modifies an existing one. These are the three runs, in order.
 
+**Redaction:** my home directory is written as `~/miniproject7SamuelHart`. Nothing
+else in the captured output was changed.
+
 Registration first:
 
 ```
 $ claude mcp add practice-hub -- \
     "$PWD/.venv/bin/python" "$PWD/server.py"
 Added stdio MCP server practice-hub with command:
-/home/hart/Documents/Advanced Programming with Python/Week 13/miniproject7SamuelHart/.venv/bin/python
-/home/hart/Documents/Advanced Programming with Python/Week 13/miniproject7SamuelHart/server.py
+~/miniproject7SamuelHart/.venv/bin/python ~/miniproject7SamuelHart/server.py
 to local config
 
 $ claude mcp list
