@@ -114,7 +114,15 @@ environment.
 
 ## Running the acceptance test
 
-Ask Claude Code to use the tools. Each step goes through the server:
+Ask Claude Code to use the tools, or run the script that drives all three steps
+and writes the transcript:
+
+```
+export PRACTICE_API_TOKEN="your-token-here"
+python3 acceptance/run.py
+```
+
+Each step goes through the server:
 
 ```
 claude -p "Use the practice-hub tools to list my posts."
@@ -122,9 +130,11 @@ claude -p "Use create_post to create a post titled 'test' with body 'hello'."
 claude -p "Use update_post to change the body of post 47 to 'edited'."
 ```
 
-The third one takes two calls because of the confirm gate. The full transcript,
-with the registration output and the post read straight back from the API after
-the edit, is in [`acceptance/transcript.md`](acceptance/transcript.md).
+The third one takes two calls because of the confirm gate. `acceptance/run.py`
+snapshots the post ids first, so it can tell which post the create step actually
+made, and afterwards it reads that post straight from the API instead of
+trusting the model's summary. The output lands in
+[`acceptance/transcript.md`](acceptance/transcript.md).
 
 ## Layout
 
@@ -132,6 +142,7 @@ the edit, is in [`acceptance/transcript.md`](acceptance/transcript.md).
 server.py                  the MCP server
 requirements.txt           pinned dependencies, real pip freeze
 CLAUDE.md                  the requirement checklist and project rules
+acceptance/run.py          drives the three steps, writes the transcript
 acceptance/transcript.md   read, create and modify, through the server
 ```
 
