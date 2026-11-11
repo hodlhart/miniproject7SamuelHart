@@ -71,7 +71,8 @@ $env:PRACTICE_API_TOKEN = "your-token-here"
 ```
 
 If the token is missing the tools return a message saying so rather than sending
-a request with an empty credential.
+a request with an empty credential. `.env.example` has both variables ready to
+copy into `.env`; `.env` itself is gitignored.
 
 ## Register with Claude Code
 
